@@ -18,4 +18,21 @@ describe('비동기', () => {
             done()//test() 는비동기 함수가 아니므로 실제로 done()이 있음으로해서 대기한다
         })
     })
+
+    // test()는 두번째인수 - 콜백함수가 Promise 객체를 반환하는 구조라면 대기한다
+    test('then', () => {
+        return asyncFn().then(r => {
+            expect(r).toBe('Passes!')
+        })
+    })
+
+    test('resolves', () => {
+        return expect(asyncFn()).resolves.toBe('Passes!')
+    })
+    
+    // 위와 다르게 콜백에 async 를 붙임
+    test('async/await', async () => {
+        const r = await asyncFn()
+        expect(r).toBe('Passes!')
+    })
 })
