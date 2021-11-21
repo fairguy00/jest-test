@@ -4,13 +4,13 @@ function asyncFn() {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve('Passes!')
-        }, 1000)
+        }, 6000)
     })
 }
 
 describe('비동기', () => {
 
-    // test 는 최대 5초 까지 대기한다
+    // test(name, fn, timeout)는 timeout 5초(default) 까지 대기한다
     // done 이 매개변수로 들어왔는데 done() 이 없다면 계속대기 하게되므로 5초후에 종료된다
     test('done', (done) => {//done 이라는 매개변수를 주고 done()을 넣으면 done() 이 실행될때 까지 기다린다
         asyncFn().then(r => {
@@ -34,5 +34,5 @@ describe('비동기', () => {
     test('async/await', async () => {
         const r = await asyncFn()
         expect(r).toBe('Passes!')
-    })
+    }, 7000)
 })
